@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inyeccion_NoSQL</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2em;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.5em;
+        }
+        input {
+            font-size: 1em;
+            padding: 10px;
+            margin: 5px;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.text();
+            alert(result);
+        });
+    </script>
+</body>
+</html>

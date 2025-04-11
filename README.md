@@ -13,8 +13,9 @@ cd NoSQL-Inyection
 Ejecuta el siguiente comando dentro de la carpeta del proyecto:
 ```sh
 npm install
+npm install cors
 ```
-Esto instalará todas las dependencias necesarias definidas en `package.json`.
+Esto instalará todas las dependencias necesarias definidas en `package.json`, incluyendo `cors` para evitar errores relacionados con políticas de seguridad del navegador.
 
 ### 3. Ejecutar el servidor
 Inicia el backend con:

